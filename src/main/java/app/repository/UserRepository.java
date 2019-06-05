@@ -4,8 +4,15 @@ package app.repository;
 // CRUD refers Create, Read, Update, Delete
 
 import app.model.User;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+import java.util.Optional;
+
+public interface UserRepository extends CrudRepository<User, Integer>, JpaSpecificationExecutor<User> {
+
+    Optional<User> findByEmailEquals(String email);
+
+    Optional<User> findByNameEquals(String name);
 
 }
